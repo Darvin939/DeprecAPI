@@ -2,6 +2,7 @@ package darvin939.DeprecAPI;
 
 import java.util.Map;
 
+import org.bukkit.Material;
 import org.bukkit.map.MapView;
 import org.bukkit.potion.Potion;
 import org.bukkit.util.Java15Compat;
@@ -70,6 +71,10 @@ public enum ItemAPI {
 
 	public int id() {
 		return this.id;
+	}
+	
+	public Material type() {
+		return this.type();
 	}
 
 	static {
