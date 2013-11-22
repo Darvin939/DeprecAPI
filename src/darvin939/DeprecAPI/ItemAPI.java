@@ -1,5 +1,6 @@
 package darvin939.DeprecAPI;
 
+import java.io.IOException;
 import java.util.Map;
 import java.util.logging.Logger;
 
@@ -17,17 +18,23 @@ public class ItemAPI extends JavaPlugin {
 
 	public void onEnable() {
 		des = getDescription();
-		log.info("DeprecAPI " + des.getName() + " v" + des.getVersion() + " enabled");
+		log.info("[DeprecAPI] " + des.getName() + " v" + des.getVersion() + " enabled");
+		try {
+			MetricsLite metrics = new MetricsLite(this);
+			metrics.start();
+		} catch (IOException e) {
+			log.info("[DeprecAPI] Failed to submit stats to the Metrics (mcstats.org)");
+		}
 	}
 
 	public void onDisable() {
-		log.info("DeprecAPI" + des.getName() + " v" + des.getVersion() + " disabled");
+		log.info("[DeprecAPI]" + des.getName() + " v" + des.getVersion() + " disabled");
 	}
 
 	/**
 	 * An enum of all material ids accepted by the official server + client
 	 */
-	
+
 	public enum ID {
 		AIR(0), STONE(1), GRASS(2), DIRT(3), COBBLESTONE(4), WOOD(5), SAPLING(6), BEDROCK(7), WATER(8), STATIONARY_WATER(9), LAVA(10), STATIONARY_LAVA(11), SAND(12), GRAVEL(13), GOLD_ORE(14), IRON_ORE(15), COAL_ORE(16), LOG(17), LEAVES(18), SPONGE(19), GLASS(20), LAPIS_ORE(21), LAPIS_BLOCK(22), DISPENSER(
 				23), SANDSTONE(24), NOTE_BLOCK(25), BED_BLOCK(26), POWERED_RAIL(27), DETECTOR_RAIL(28), PISTON_STICKY_BASE(29), WEB(30), LONG_GRASS(31), DEAD_BUSH(32), PISTON_BASE(33), PISTON_EXTENSION(34), WOOL(35), PISTON_MOVING_PIECE(36), YELLOW_FLOWER(37), RED_ROSE(38), BROWN_MUSHROOM(39), RED_MUSHROOM(
