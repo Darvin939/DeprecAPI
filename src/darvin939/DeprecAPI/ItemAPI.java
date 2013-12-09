@@ -61,7 +61,7 @@ public enum ItemAPI {
 		return null;
 	}
 
-	public static ItemAPI getMaterial(final int id) {
+	public static ItemAPI get(final int id) {
 		if (byId.length > id && id >= 0) {
 			return byId[id];
 		} else {
@@ -72,9 +72,14 @@ public enum ItemAPI {
 	public int id() {
 		return this.id;
 	}
-	
+
 	public Material type() {
-		return this.type();
+		for (ItemAPI m : values()) {
+			if (m.id() == id) {
+				return Material.getMaterial(m.name());
+			}
+		}
+		return Material.AIR;
 	}
 
 	static {
